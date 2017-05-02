@@ -15,6 +15,7 @@ Developed for the original intent of monitoring the color change in a chemical r
 For Linux Users:
 
 `pip install requirements.txt`
+
 `python ColorPixel.py -f [InputVideoFile]`
 
 ## Dependencies
