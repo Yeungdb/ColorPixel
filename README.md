@@ -1,9 +1,9 @@
-#ColorPixel 
+# ColorPixel 
 
-##Darien Yeung (@Yeungdb)
+## Darien Yeung (@Yeungdb)
 University of Victoria, McIndoe Group
 
-##Background
+## Background
 
 ColorPixel is a lightweight Python application for making colorbars from collecting single pixel from an input video. Leveraging imageio's capabilities for video frame extraction and obtaining the RGB values from the individual frame, the colors are stitched together via matplotlib to construct a colorbar plot. 
 
@@ -11,16 +11,19 @@ Developed for the original intent of monitoring the color change in a chemical r
 
    {INSERT LINK TO TITANOCENE PAPER}
 
-##Quickstart
+## Quickstart
 For Linux Users:
 
 `pip install requirements.txt`
 `python ColorPixel.py -f [InputVideoFile]`
 
-##Dependencies
+## Dependencies
 
  - Imageio
  - Matplotlib
 
-##Contact
+## Contact
+
+Twitter: https://twitter.com/Yeungdb
+
 
