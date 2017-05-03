@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/Yeungdb/ColorPixel/master/ColorPixel.png)
+
 # ColorPixel 
 
 ## Darien Yeung (@Yeungdb)
