@@ -1,5 +1,4 @@
-![](https://raw.githubusercontent.com/Yeungdb/ColorPixel/blob/master/ColorPixel.png)
-
+<img src="./ColorPixel.png" width="375">
 # ColorPixel 
 
 ## Darien Yeung (@Yeungdb)
