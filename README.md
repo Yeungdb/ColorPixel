@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/Yeungdb/ColorPixel/master/ColorPixel.png)
+![](https://raw.githubusercontent.com/Yeungdb/ColorPixel/blob/master/ColorPixel.png)
 
 # ColorPixel 
 
