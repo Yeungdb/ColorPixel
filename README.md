@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="./ColorPixel.png" width="375" align="center">
+</p>
+
 # ColorPixel 
 
 ## Darien Yeung (@Yeungdb)
