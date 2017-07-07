@@ -5,11 +5,16 @@ import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 
-import time
+import time 
 import sys
 from optparse import OptionParser
 
 from nyanbar import NyanBar
+import mpldatacursor
+
+def onclick(event):
+    GeneratePlot(outfile, Filename, int(event.xdata), int(event.ydata), nyanFlag, nyanAudio)
+    plt.close()
 
 def NameEcho():
     return "ColorPixel"
@@ -30,7 +35,16 @@ def GenerateFrameN(outfile, Filename, frameNumber):
     plt.clf()
     return
 
-def GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag=0):
+def GenerateFrameNInteractive(outfile, Filename, frameNumber):
+    video = imageio.get_reader(Filename, 'ffmpeg')
+    frame = video.get_data(frameNumber)
+    fig = plt.imshow(frame)
+    connection_id=fig.figure.canvas.mpl_connect('button_press_event', onclick)
+    mpldatacursor.datacursor(hover=True, bbox=dict(alpha=1, fc='w'))
+    plt.show()
+    return
+
+def GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag=0, nyanAudio=0):
 
     video = imageio.get_reader(Filename, 'ffmpeg')
     colorArr = []
@@ -44,11 +58,13 @@ def GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag=0):
     RGB = [[],[],[]] #0 - Red, 1 - Green, 2 - Blue
 
     progress = ""
-    if(1 == nyanFlag):
+    if(nyanAudio):
+       progress = NyanBar(audiofile="./NyanCat.mp3") 
+    elif(nyanFlag):
        progress = NyanBar() 
 
     try:
-        print "Starting Collection" + outfile
+        print "Starting Collection"
         for i in index:
             try:
                 frame = video.get_data(i)
@@ -58,7 +74,7 @@ def GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag=0):
                 print "\nEnding Collection" 
                 break
 
-            tempArr = frame[xpixel,ypixel] #Get the Frame at X=xpixel and Y=ypixel
+            tempArr = frame[ypixel,xpixel] #Get the Frame at X=xpixel and Y=ypixel
 
             for j in range(3):
                 RGB[j].append(float(tempArr[j])/256.0) #Normalizing the RGB values to 256 to get RGB value less than 1 for Matplotlib cmap
@@ -98,6 +114,8 @@ parser.add_option('-i', "--filename", help="Filename of file for processing", ac
 parser.add_option('-x', "--xpixel", help="Location of X pixel", action="store")
 parser.add_option('-y', "--ypixel", help="Location of Y pixel", action="store")
 parser.add_option('-n', "--nyanFlag", help="Flag to set if use nyanbar", action="store_true", default=False)
+parser.add_option('-a', "--nyanAudio", help="Flag to set if use nyanbar audio", action="store_true", default=False)
+parser.add_option('-t', "--interactive", help="Interactive Pixel Picking", action="store_true", default=False)
 options, args = parser.parse_args()
 
 outfile=options.outfile
@@ -106,12 +124,17 @@ xpixel=int(options.xpixel or 0)
 ypixel=int(options.ypixel or 0)
 FrameN=int(options.FrameN or 0)
 nyanFlag=options.nyanFlag
+nyanAudio=options.nyanAudio
+interactive=options.interactive
 
 ##MAIN##
 if FrameN != 0:
-    GenerateFrameN(outfile, Filename, FrameN)
+    if interactive:
+        GenerateFrameNInteractive(outfile, Filename, FrameN)
+    else:
+        GenerateFrameN(outfile, Filename, FrameN)
 else:
     #GenerateRGBArray
     #GenerateColorPlot(RGBArr)
     #GenerateRGBPlot(RGBArr)
-    GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag)
+    GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag, nyanAudio)
