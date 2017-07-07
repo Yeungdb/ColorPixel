@@ -19,12 +19,35 @@ For Linux Users:
 
 `pip install requirements.txt`
 
-`python ColorPixel.py -f [InputVideoFile]`
+`python ColorPixel.py -i /path/to/inputfile -o /path/to/outputimage [FLAGS]
 
+
+Options
+
+`Options:
+  -h, --help            show this help message and exit
+  -f FRAMEN, --FrameN=FRAMEN
+                        Generate frame N to look for pixel of interest
+  -o OUTFILE, --outfile=OUTFILE
+                        Filename of output file for Gradient Image
+  -i FILENAME, --filename=FILENAME
+                        Filename of file for processing
+  -x XPIXEL, --xpixel=XPIXEL
+                        Location of X pixel
+  -y YPIXEL, --ypixel=YPIXEL
+                        Location of Y pixel
+  -n, --nyanFlag        Flag to set if use nyanbar
+  -a, --nyanAudio       Flag to set if use nyanbar audio
+  -t, --interactive     Interactive Pixel Picking
+`
 ## Dependencies
 
  - Imageio
  - Matplotlib
+ - optparse
+ - nyanbar
+ - mpldatacursor
+ 
 
 ## Contact
 
