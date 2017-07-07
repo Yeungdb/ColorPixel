@@ -53,8 +53,6 @@ def GeneratePlot(outfile, Filename, xpixel, ypixel, nyanFlag=0, nyanAudio=0):
     gradient = np.vstack((gradient, gradient))
     index = range(maxLen)
 
-    #outfile = AppendTitleToFilename(outfile, "Trace")
-
     RGB = [[],[],[]] #0 - Red, 1 - Green, 2 - Blue
 
     progress = ""
